@@ -1,3 +1,15 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Ignore Vs Code files
+.vscode/
+
 # Prerequisites
 *.d
 
