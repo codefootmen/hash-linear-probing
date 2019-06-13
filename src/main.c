@@ -5,11 +5,14 @@
 #include "global.h"
 
 int TABLE_SIZE;
+int INCREMENT;
 
 int main(){
 
     printf("Choose the table size: ");
     scanf("%d", &TABLE_SIZE);
+    printf("Choose the increment: ");
+    scanf("%d", &INCREMENT);
 
     Node *head = create_hash_table(TABLE_SIZE);
 
