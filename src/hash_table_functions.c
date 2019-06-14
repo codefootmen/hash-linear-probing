@@ -13,17 +13,43 @@ void print_hash_table(){
     }
 }
 
+
 int hash(int key){
-     int pos = key % TABLE_SIZE;
+    int pos = key % TABLE_SIZE;
 
-	 while(*(P_TABLE + pos)){
-		 pos = (pos + INCREMENT) % TABLE_SIZE;
-	 }
+    while(*(P_TABLE + pos)){
+      if(*(P_TABLE + pos) == key ){
+        printf("--------------------\n");
+        printf("Key already exists.\n");
+        printf("--------------------\n");
+        return 0;
+      }
+      pos = (pos + INCREMENT) % TABLE_SIZE;
+    }
 
-	 *(P_TABLE + pos) = key;
+    *(P_TABLE + pos) = key;
 
-     return 1;
+    return 1;
 }
+
+int delete_key(int key){
+   int pos = key % TABLE_SIZE;
+
+    for(int i = 0; i < TABLE_SIZE; i++){
+      if(*(P_TABLE + pos) == key ){
+        *(P_TABLE + pos) = 0;
+        return 1;
+      }
+      pos = (pos + INCREMENT) % TABLE_SIZE;
+    }
+
+    printf("----------------------------\n");
+    printf("Key already does not exists.\n");
+    printf("----------------------------\n");
+
+    return 0;
+}
+
 
 
 

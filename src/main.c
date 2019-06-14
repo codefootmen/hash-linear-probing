@@ -29,11 +29,12 @@ int main(){
     //system("clear");
 	option = 0;
 	print_hash_table();
-	printf("\n");
+	printf("\n\n");
 	printf("---------------------------------\n");
 	printf("- Hash Linear Probing           -\n");
 	printf("- 0 . Exit                      -\n");
 	printf("- 1 . Insert key                -\n");
+	printf("- 2 . Delete key                -\n");
 	printf("---------------------------------\n");
 	scanf("%d", &option);
 
@@ -44,12 +45,15 @@ int main(){
 	        run = 0;
 		break;
 	    case 1:
-			printf("Key: ");
-			scanf("%d", &key);
-			hash(key);
+        printf("Key: ");
+        scanf("%d", &key);
+        hash(key);
 		break;
-            case 2:
-		break;
+      case 2:
+      printf("Key: ");
+      scanf("%d", &key);
+      delete_key(key);
+  	break;
 	    default:
 		break;
 	}
