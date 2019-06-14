@@ -25,6 +25,10 @@ int hash(int key){
         return 0;
       }
       pos = (pos + INCREMENT) % TABLE_SIZE;
+
+      while(pos < 0){
+        pos+=TABLE_SIZE;
+      }
     }
 
     *(P_TABLE + pos) = key;
@@ -44,7 +48,7 @@ int delete_key(int key){
     }
 
     printf("----------------------------\n");
-    printf("Key already does not exists.\n");
+    printf("Key does not exists.\n");
     printf("----------------------------\n");
 
     return 0;
