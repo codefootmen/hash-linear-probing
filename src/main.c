@@ -6,6 +6,7 @@
 
 int TABLE_SIZE;
 int INCREMENT;
+int *P_TABLE;
 
 int main(){
 
@@ -14,15 +15,20 @@ int main(){
     printf("Choose the increment: ");
     scanf("%d", &INCREMENT);
 
-    Node *head = create_hash_table(TABLE_SIZE);
+    int table[TABLE_SIZE];
+	P_TABLE = table;
+
+	for(int i =0; i < TABLE_SIZE; i++){
+		*(P_TABLE + i) = 0;
+	}
 
     int run = 1;
     int option;
-    
+
     while (run){
-        //system("clear");
+    //system("clear");
 	option = 0;
-	print_hash_table(head);
+	print_hash_table();
 	printf("\n");
 	printf("---------------------------------\n");
 	printf("- Hash Linear Probing           -\n");
@@ -38,9 +44,9 @@ int main(){
 	        run = 0;
 		break;
 	    case 1:
-		printf("Key: ");
-		scanf("%d", &key);
-		hash(key, head);
+			printf("Key: ");
+			scanf("%d", &key);
+			hash(key);
 		break;
             case 2:
 		break;
