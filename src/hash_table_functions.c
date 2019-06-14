@@ -61,7 +61,7 @@ int update_table(int pos){
     *(P_TABLE + pos) = 0;
     *((P_TABLE + get_previous_position(pos))) = temp;
 
-	return update_table((pos + INCREMENT) % TABLE_SIZE);
+	return update_table(get_next_position(pos));
 }
 
 int get_next_position(int pos){
