@@ -24,11 +24,7 @@ int hash(int key){
         printf("--------------------\n");
         return 0;
       }
-      pos = (pos + INCREMENT) % TABLE_SIZE;
-
-      while(pos < 0){
-        pos+=TABLE_SIZE;
-      }
+      pos = get_next_position(pos);
     }
 
     *(P_TABLE + pos) = key;
@@ -44,7 +40,8 @@ int delete_key(int key){
         *(P_TABLE + pos) = 0;
         return 1;
       }
-      pos = (pos + INCREMENT) % TABLE_SIZE;
+      pos = get_next_position(pos);
+      
     }
 
     printf("----------------------------\n");
@@ -52,6 +49,14 @@ int delete_key(int key){
     printf("----------------------------\n");
 
     return 0;
+}
+
+int get_next_position(int pos){
+  pos = (pos + INCREMENT) % TABLE_SIZE;
+  while(pos < 0){
+    pos+=TABLE_SIZE;
+  }
+  return pos;
 }
 
 
