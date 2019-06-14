@@ -42,6 +42,7 @@ int delete_key(int key){
     for(int i = 0; i < TABLE_SIZE; i++){
       if(*(P_TABLE + pos) == key ){
         *(P_TABLE + pos) = 0;
+		update_table((pos + INCREMENT) % TABLE_SIZE);
         return 1;
       }
       pos = (pos + INCREMENT) % TABLE_SIZE;
@@ -52,6 +53,18 @@ int delete_key(int key){
     printf("----------------------------\n");
 
     return 0;
+}
+
+int update_table(int pos){
+	if( (*(P_TABLE + pos) % TABLE_SIZE) == (pos) ){
+		return 1;
+	}
+
+	int temp = *(P_TABLE + pos);
+    *(P_TABLE + pos) = 0;
+    *((P_TABLE + pos) + (INCREMENT*(-1))) = temp;
+
+	return update_table((pos + INCREMENT) % TABLE_SIZE);
 }
 
 
