@@ -38,7 +38,7 @@ int delete_key(int key){
     for(int i = 0; i < TABLE_SIZE; i++){
       if(*(P_TABLE + pos) == key ){
         *(P_TABLE + pos) = 0;
-		update_table((pos + INCREMENT) % TABLE_SIZE);
+		    update_table(key, pos);
         return 1;
       }
       pos = get_next_position(pos);
@@ -52,16 +52,33 @@ int delete_key(int key){
     return 0;
 }
 
-int update_table(int pos){
-	if( (*(P_TABLE + pos) % TABLE_SIZE) == (pos) ){
-		return 1;
-	}
+int update_table(int value, int pos)
+{
+    int originalKey = value % TABLE_SIZE;
+    int previous = pos;
+    pos = get_next_position(pos);
 
-	int temp = *(P_TABLE + pos);
+    while (1)
+    {
+        if(*(P_TABLE + pos) == 0 || pos > TABLE_SIZE)
+        {
+            return 1;
+        }
+        int key = (*(P_TABLE + pos) % TABLE_SIZE);
+        if(originalKey == key || (key - pos) != 0)
+        {
+            change(pos, previous);
+            previous = pos;
+        }
+        pos = get_next_position(pos);
+    }
+    return 0;
+}
+
+void change(int pos, int previous){
+  int temp = *(P_TABLE + pos);
     *(P_TABLE + pos) = 0;
-    *((P_TABLE + get_previous_position(pos))) = temp;
-
-	return update_table(get_next_position(pos));
+    *(P_TABLE + previous) = temp;
 }
 
 int get_next_position(int pos){
@@ -72,13 +89,6 @@ int get_next_position(int pos){
   return pos;
 }
 
-int get_previous_position(int pos){
-  pos = (pos - INCREMENT) % TABLE_SIZE;
-  while(pos < 0){
-    pos+=TABLE_SIZE;
-  }
-  return pos;
-}
 
 
 
