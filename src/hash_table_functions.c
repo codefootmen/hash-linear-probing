@@ -24,6 +24,7 @@ int hash(int key){
         printf("--------------------\n");
         return 0;
       }
+      printf("\nCOLISÃO: %d\n", pos);
       pos = get_next_position(pos);
     }
 
@@ -73,6 +74,25 @@ int update_table(int value, int pos)
         pos = get_next_position(pos);
     }
     return 0;
+}
+
+void search(int key){
+   int pos = key % TABLE_SIZE;
+   int temp = 0;
+    for(int i = 0; i < TABLE_SIZE; i++){
+      if(*(P_TABLE + pos) == key ){
+        printf("Posição: %d\n\n", pos);
+        temp = 1;
+      }
+      pos = get_next_position(pos);
+
+    }
+
+    if(!temp){
+      printf("----------------------------\n");
+      printf("Key does not exists.\n");
+      printf("----------------------------\n");
+    }
 }
 
 void change(int pos, int previous){

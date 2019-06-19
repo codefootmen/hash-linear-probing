@@ -26,7 +26,7 @@ int main(){
     int option;
 
     while (run){
-    //system("clear");
+    system("clear");
 	option = 0;
 	print_hash_table();
 	printf("\n\n");
@@ -35,6 +35,7 @@ int main(){
 	printf("- 0 . Exit                      -\n");
 	printf("- 1 . Insert key                -\n");
 	printf("- 2 . Delete key                -\n");
+	printf("- 3 . Search                    -\n");
 	printf("---------------------------------\n");
 	scanf("%d", &option);
 
@@ -48,12 +49,21 @@ int main(){
         printf("Key: ");
         scanf("%d", &key);
         hash(key);
+        int temp;
+        scanf("%d", &temp);
 		break;
       case 2:
       printf("Key: ");
       scanf("%d", &key);
       delete_key(key);
   	break;
+      case 3:
+      printf("Key: ");
+      scanf("%d", &key);
+      search(key);
+      int temp1;
+      scanf("%d", &temp1);
+    break;
 	    default:
 		break;
 	}
